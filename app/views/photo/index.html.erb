@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+      p {border: 2px solid powderblue; padding: 2px}
+  </style>
+  <title> PHOTOSITE </title>
+</head>
+<body bgcolor="#faebd7">
+<div style="...">
+  <h1>
+    <center>Photosite</center>
+  </h1>
+  <h3>
+    <center><i>User Photo Page</i></center>
+  </h3>
+</div>
+<div>
+  <center>
+    <h1>Photos of <%= @user.first_name %> <%= @user.last_name %></h1>
+  </center>
+  <% @photos.each do |photo| %>
+    <center>
+      <%= image_tag("/assets/#{photo.file_name}") %>
+      <p>Photo Created at <%= photo.date_time %></p>
+    </center>
+    <% @comments.each do |comment| %>
+      <li>
+        <center>
+          <p>comment: <%=comment.comment %></p>
+          <p>Created at: <%=comment.date_time%></p>
+          <p>Posted by: <%= link_to display_name(comment.user_id), user_photos_path(comment.user_id) %></p>
+        </center>
+      </li>
+    <% end %>
+    </div>
+    <br>
+  <%end %>
+  </body>
+</html>
